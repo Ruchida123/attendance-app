@@ -1,10 +1,10 @@
-.login-form__content {
+.register-form__content {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
 }
 
-.login-form__heading {
+.register-form__heading {
     margin-bottom: 20px;
     text-align: center;
 }
@@ -54,7 +54,11 @@
     cursor: pointer;
 }
 
-.register__link {
+.login__link {
     margin-top: 20px;
     text-align: center;
+}
+
+.login__link-text {
+    font-size: small;
 }
