@@ -22,7 +22,13 @@
           <ul class="header-nav">
             @if (Auth::check())
             <li class="header-nav__item">
-              <a class="header-nav__link" href="/mypage">マイページ</a>
+              <a class="header-nav__link" href="/">ホーム</a>
+            </li>
+            <li class="header-nav__item">
+              <form class="form" action="/date" method="get">
+                @csrf
+                <button class="header-nav__button">日付一覧</button>
+              </form>
             </li>
             <li class="header-nav__item">
               <form class="form" action="/logout" method="post">
@@ -37,9 +43,13 @@
     </div>
   </header>
 
-  <main>
+  <main class="main">
     @yield('content')
   </main>
+
+  <footer class="footer">
+    Atte,inc.
+  </footer>
 </body>
 
 </html>

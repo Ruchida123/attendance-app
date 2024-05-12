@@ -18,7 +18,7 @@
 @section('content')
 <div class="login-form">
   <div class="login-form__heading">
-    <h2>ログイン</h2>
+    <h2 class="login-form__title">ログイン</h2>
   </div>
   <div class="login-form__content">
     <form class="form" action="/login" method="post">

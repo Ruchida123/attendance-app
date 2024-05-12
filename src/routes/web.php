@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,9 @@ use App\Http\Controllers\AttendanceController;
 */
 Route::middleware('auth')->group(function () {
     Route::get('/', [AttendanceController::class, 'index']);
+    Route::get('/date', [AttendanceController::class, 'date']);
 });
-
+Route::post('/work', [AttendanceController::class, 'work_start']);
+Route::patch('/work', [AttendanceController::class, 'work_end']);
+Route::post('/rest', [RestController::class, 'rest_start']);
+Route::patch('/rest', [RestController::class, 'rest_end']);
