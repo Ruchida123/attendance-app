@@ -14,14 +14,19 @@ class Attendance extends Model
         'date',
         'start_work_time',
         'end_work_time',
-        'total_work_time'
+        'total_work_time',
+        'state'
     ];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function scopeUserDateSearch($query, $user_id)
+    public function rests(){
+        return $this->hasMany('App\Models\Rest');
+    }
+
+    public function scopeUserTodaySearch($query, $user_id)
     {
         if (!empty($user_id)) {
             $query->where('user_id', $user_id)
@@ -29,11 +34,11 @@ class Attendance extends Model
         }
     }
 
-    public function scopeEndWorkSearch($query, $attendance_id)
+    public function scopeDateSearch($query, $date)
     {
-        if (!empty($attendance_id)) {
-            $query->where('id', $attendance_id)
-            ->where('end_work_time', "!=", null);
+        if (!empty($date)) {
+            $query->where('date', $date);
         }
     }
+
 }

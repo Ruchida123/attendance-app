@@ -10,20 +10,13 @@ class Rest extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'attendance_id',
         'date',
         'start_rest_time',
         'end_rest_time',
         'total_rest_time'
     ];
-
-    public function scopeAttendanceDateSearch($query, $attendance_id)
-    {
-        if (!empty($attendance_id)) {
-            $query->where('attendance_id', $attendance_id)
-            ->where('date', date('Y-m-d'));
-        }
-    }
 
     public function scopeStartRestAtteSearch($query, $attendance_id)
     {
