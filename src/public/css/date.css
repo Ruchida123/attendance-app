@@ -18,29 +18,28 @@
 
 .attendance__date {
     padding-top: 25px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .attendance__button {
-    width: 100%;
+    width: 30%;
     text-align: center;
 }
 
 .attendance__button-submit {
     padding: 5px;
     width: 30%;
-    height: 50px;
-    border: none;
+    border-color: #0000ff;
     border-radius: 3px;
     background: #fff;
-    color: #000;
+    color: #0000ff;
     cursor: pointer;
 }
 
 .attendance__button-disabled {
     padding: 5px;
     width: 30%;
-    height: 50px;
     border: none;
     border-radius: 3px;
     background: #fff;
@@ -76,4 +75,39 @@
 .attendance-table__item {
     padding: 12px;
     width: 20%;
+}
+
+.attendance-table__pagination {
+    height: 40px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    border-width: 0;
+}
+
+.pagination li {
+    border: 1px solid #E0DFDE;
+    padding: 5px 10px;
+    background-color: #fff;
+}
+
+.pagination li:first-of-type {
+    border-radius: 3px 0 0 3px;
+}
+
+.pagination li:last-of-type {
+    border-radius: 0 3px 3px 0;
+}
+
+.disabled,
+.pagination li a {
+    color: #0000ff;
+    text-decoration: none;
+}
+
+.active {
+    color: #fff;
+    background-color: #0000ff !important;
 }

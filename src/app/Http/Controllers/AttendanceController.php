@@ -111,13 +111,61 @@ class AttendanceController extends Controller
 
     public function date()
     {
-        // 日付
-        $today = Carbon::now('Asia/Tokyo')->format('Y-m-d');
+        // 翌日ボタン非活性フラグ
+        $after_button_disabled = true;
+        // 現在日付
+        $current_date = Carbon::now('Asia/Tokyo')->format('Y-m-d');
 
         // 勤怠情報
-        $attendances = Attendance::with('user', 'rests')->DateSearch($today)->Paginate(5);
+        $attendances = Attendance::with('user', 'rests')->DateSearch($current_date)->Paginate(5);
 
         // 日付別勤怠ページ表示
-        return view('date', compact('attendances', 'today'));
+        return view('date', compact('attendances', 'current_date', 'after_button_disabled'));
+    }
+
+    public function before_date(Request $request)
+    {
+        // 翌日ボタン非活性フラグ
+        $after_button_disabled = false;
+        // 元の日付
+        $origin_datetime = new Carbon($request->req_date.' 00:00:00');
+        // 現在の日付
+        $current_date = $origin_datetime->subDays(1)->format('Y-m-d');
+        // 今日の日付
+        $today = Carbon::today('Asia/Tokyo')->format('Y-m-d');
+
+        // 現在の日付が今日の日付以上の場合、翌日ボタン非活性
+        if ( Carbon::parse($current_date)->gte(Carbon::parse($today))) {
+            $after_button_disabled = true;
+        }
+
+        // 勤怠情報
+        $attendances = Attendance::with('user', 'rests')->DateSearch($current_date)->Paginate(5);
+
+        // 日付別勤怠ページ表示
+        return view('date', compact('attendances', 'current_date', 'after_button_disabled'));
+    }
+
+    public function after_date(Request $request)
+    {
+        // 翌日ボタン非活性フラグ
+        $after_button_disabled = false;
+        // 元の日付
+        $origin_datetime = new Carbon($request->req_date.' 00:00:00');
+        // 現在の日付
+        $current_date = $origin_datetime->addDays(1)->format('Y-m-d');
+        // 今日の日付
+        $today = Carbon::today('Asia/Tokyo')->format('Y-m-d');
+
+        // 現在の日付が今日の日付以上の場合、翌日ボタン非活性
+        if ( Carbon::parse($current_date)->gte(Carbon::parse($today))) {
+            $after_button_disabled = true;
+        }
+
+        // 勤怠情報
+        $attendances = Attendance::with('user', 'rests')->DateSearch($current_date)->Paginate(5);
+
+        // 日付別勤怠ページ表示
+        return view('date', compact('attendances', 'current_date', 'after_button_disabled'));
     }
 }
