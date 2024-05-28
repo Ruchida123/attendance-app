@@ -135,12 +135,14 @@ class AttendanceController extends Controller
         $today = Carbon::today('Asia/Tokyo')->format('Y-m-d');
 
         // 現在の日付が今日の日付以上の場合、翌日ボタン非活性
-        if ( Carbon::parse($current_date)->gte(Carbon::parse($today))) {
+        if (Carbon::parse($current_date)->gte(Carbon::parse($today))) {
             $after_button_disabled = true;
         }
 
         // 勤怠情報
         $attendances = Attendance::with('user', 'rests')->DateSearch($current_date)->Paginate(5);
+        // ページ遷移の際にクエリパラメータを付与する。
+        $attendances->withPath('/before?req_date='.$request->req_date);
 
         // 日付別勤怠ページ表示
         return view('date', compact('attendances', 'current_date', 'after_button_disabled'));
@@ -152,18 +154,26 @@ class AttendanceController extends Controller
         $after_button_disabled = false;
         // 元の日付
         $origin_datetime = new Carbon($request->req_date.' 00:00:00');
-        // 現在の日付
-        $current_date = $origin_datetime->addDays(1)->format('Y-m-d');
         // 今日の日付
         $today = Carbon::today('Asia/Tokyo')->format('Y-m-d');
+        // 現在の日付
+        $current_date = (Carbon::parse($origin_datetime)->gte(Carbon::parse($today))) ? $origin_datetime->format('Y-m-d') : $origin_datetime->addDays(1)->format('Y-m-d');
 
         // 現在の日付が今日の日付以上の場合、翌日ボタン非活性
-        if ( Carbon::parse($current_date)->gte(Carbon::parse($today))) {
+        if (Carbon::parse($current_date)->gte(Carbon::parse($today))) {
             $after_button_disabled = true;
         }
 
         // 勤怠情報
         $attendances = Attendance::with('user', 'rests')->DateSearch($current_date)->Paginate(5);
+        // ページ遷移の際にクエリパラメータを付与する。
+        $attendances->withPath('/after?req_date='.$request->req_date);
+
+        // 現在の日付が未来の日付の場合、エラーとする。
+        if (Carbon::parse($current_date)->gt(Carbon::parse($today))) {
+            $error = "未来のデータは表示できません";
+            return redirect('/attendance')->with(compact('attendances', 'current_date', 'after_button_disabled', 'error'));
+        };
 
         // 日付別勤怠ページ表示
         return view('date', compact('attendances', 'current_date', 'after_button_disabled'));

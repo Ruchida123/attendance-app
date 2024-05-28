@@ -21,6 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/rest', [RestController::class, 'rest_start']);
     Route::patch('/rest', [RestController::class, 'rest_end']);
     Route::get('/attendance', [AttendanceController::class, 'date']);
-    Route::post('/before', [AttendanceController::class, 'before_date']);
-    Route::post('/after', [AttendanceController::class, 'after_date']);
+    Route::get('/before', [AttendanceController::class, 'before_date']);
+    Route::get('/after', [AttendanceController::class, 'after_date']);
 });

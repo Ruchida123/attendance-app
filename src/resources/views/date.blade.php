@@ -7,28 +7,22 @@
 @endsection
 
 @section('content')
-@if (session('message'))
+@if(session('error'))
 <div class="attendance__alert">
-  <div class="attendance__alert--success">
-    {{ session('message') }}
-  </div>
-</div>
-@elseif(session('error'))
-<div class="attendance__alert">
-  <div class="attendance__alertー-danger">
+  <div class="attendance__alert--danger">
     {{ session('error') }}
   </div>
 </div>
 @endif
 
 <div class="attendance__date">
-  <form class="attendance__button" action="/before" method="post">
+  <form class="attendance__button" action="{{ url('/before')}}" method="get">
     @csrf
     <button class="attendance__button-submit" type="submit"><</button>
     <input type="hidden" name="req_date" value="{{ $current_date }}">
   </form>
   <p> {{ $current_date }} </p>
-  <form class="attendance__button" action="/after" method="post">
+  <form class="attendance__button" action="{{ url('/after')}}" method="get">
     @csrf
     @if ($after_button_disabled)
       <button class="attendance__button-disabled" disabled>></button>
