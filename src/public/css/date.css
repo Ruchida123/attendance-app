@@ -1,10 +1,3 @@
-.attendance__alert--success {
-    padding: 10px 30px;
-    border-color: #badbcc;
-    background-color: #d1e7dd;
-    color: #0f5132;
-}
-
 .attendance__alert--danger {
     padding: 10px 0;
     border-color: #f5c2c7;
@@ -22,24 +15,28 @@
     justify-content: center;
 }
 
-.attendance__button {
+.attendance__button-before {
     width: 30%;
-    text-align: center;
+    text-align: right;
+    margin-right: 25px;
+}
+
+.attendance__button-after {
+    width: 30%;
+    text-align: left;
+    margin-left: 25px;
 }
 
 .attendance__button-submit {
-    padding: 5px;
-    width: 30%;
-    border-color: #0000ff;
+    border-color: #005FFF;
     border-radius: 3px;
     background: #fff;
-    color: #0000ff;
+    color: #005FFF;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .attendance__button-disabled {
-    padding: 5px;
-    width: 30%;
     border: none;
     border-radius: 3px;
     background: #fff;
@@ -53,8 +50,8 @@
 }
 
 .attendance-table {
-    margin: 30px auto;
-    width: 70%;
+    margin: 20px auto;
+    width: 90%;
     text-align: center;
 }
 
@@ -63,7 +60,8 @@
 }
 
 .attendance-table__row {
-    border-bottom: 1px solid #ddd;
+    border-top: 0.5px solid #333;
+    white-space: nowrap;
 }
 
 .attendance-table__header {
@@ -103,11 +101,11 @@
 
 .disabled,
 .pagination li a {
-    color: #0000ff;
+    color: #005FFF;
     text-decoration: none;
 }
 
 .active {
     color: #fff;
-    background-color: #0000ff !important;
+    background-color: #005FFF !important;
 }

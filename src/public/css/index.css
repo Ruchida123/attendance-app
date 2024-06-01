@@ -29,6 +29,7 @@
 .attendance__panel-work,
 .attendance__panel-rest {
     display: flex;
+    margin-bottom: 30px;
 }
 
 .attendance__button {
@@ -37,9 +38,8 @@
 }
 
 .attendance__button-submit {
-    padding: 5px;
-    width: 30%;
-    height: 50px;
+    width: 90%;
+    height: 100px;
     border: none;
     border-radius: 3px;
     background: #fff;
@@ -48,9 +48,8 @@
 }
 
 .attendance__button-disabled {
-    padding: 5px;
-    width: 30%;
-    height: 50px;
+    width: 90%;
+    height: 100px;
     border: none;
     border-radius: 3px;
     background: #fff;
@@ -59,6 +58,5 @@
 
 .attendance__content {
     margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
+    padding-top: 30px;
 }

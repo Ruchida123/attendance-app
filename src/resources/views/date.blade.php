@@ -16,18 +16,18 @@
 @endif
 
 <div class="attendance__date">
-  <form class="attendance__button" action="{{ url('/before')}}" method="get">
+  <form class="attendance__button-before" action="{{ url('/before')}}" method="get">
     @csrf
-    <button class="attendance__button-submit" type="submit"><</button>
+    <button class="attendance__button-submit" type="submit">＜</button>
     <input type="hidden" name="req_date" value="{{ $current_date }}">
   </form>
-  <p> {{ $current_date }} </p>
-  <form class="attendance__button" action="{{ url('/after')}}" method="get">
+  <span> {{ $current_date }} </span>
+  <form class="attendance__button-after" action="{{ url('/after')}}" method="get">
     @csrf
     @if ($after_button_disabled)
-      <button class="attendance__button-disabled" disabled>></button>
+      <button class="attendance__button-disabled" disabled>＞</button>
     @else
-      <button class="attendance__button-submit" type="submit">></button>
+      <button class="attendance__button-submit" type="submit">＞</button>
     @endif
     <input type="hidden" name="req_date" value="{{ $current_date }}">
   </form>

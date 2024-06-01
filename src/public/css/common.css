@@ -5,7 +5,6 @@
 .header__inner {
     margin: 0 auto;
     padding: 20px 15px;
-    max-width: 1230px;
 }
 
 .header-utilities {
@@ -21,15 +20,29 @@
     font-size: 24px;
 }
 
-.header-utilities nav {
-    width: 25%;
-    white-space: nowrap;
-}
-
 .header-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.header-nav__item {
+    margin-right: 30px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+    .header-nav__item {
+        margin-right: 30px;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-nav__item {
+        margin-right: 5px;
+        white-space: nowrap;
+    }
 }
 
 .header-nav__link {
@@ -46,7 +59,9 @@
 }
 
 .main {
-    background-color: #ddd;
+    background-color: #eee;
+    height: 100vh;
+    overflow: scroll;
 }
 
 .footer {
