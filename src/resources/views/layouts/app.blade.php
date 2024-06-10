@@ -29,6 +29,10 @@
                 @csrf
                 <button class="header-nav__button">日付一覧</button>
               </form>
+              <form class="form" action="/user_list" method="get">
+                @csrf
+                <button class="header-nav__button">ユーザー一覧</button>
+              </form>
             </li>
             <li class="header-nav__item">
               <form class="form" action="/logout" method="post">

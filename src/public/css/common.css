@@ -4,12 +4,12 @@
 
 .header__inner {
     margin: 0 auto;
-    padding: 20px 15px;
+    padding: 20px 15px 0 15px;
 }
 
 .header-utilities {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 }
 
@@ -22,7 +22,7 @@
 
 .header-nav {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 }
 

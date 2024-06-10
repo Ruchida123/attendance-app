@@ -41,4 +41,11 @@ class Attendance extends Model
         }
     }
 
+    public function scopeUserYearsSearch($query, $user_id, $years)
+    {
+        if (!empty($user_id) && !empty($years)) {
+            $query->where('user_id', $user_id)
+            ->where('date', 'like', '%' . $years . '%');
+        }
+    }
 }

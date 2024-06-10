@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Attendance;
 use App\Models\Rest;
+use App\Models\User;
 use Carbon\Carbon;
 
 class AttendanceController extends Controller
@@ -177,5 +178,40 @@ class AttendanceController extends Controller
 
         // 日付別勤怠ページ表示
         return view('date', compact('attendances', 'current_date', 'after_button_disabled'));
+    }
+
+    public function user_attendance(Request $request)
+    {
+        // ユーザー情報
+        $user = User::NameEmailSearch($request->user_name, $request->user_email)->first();
+        // 翌月ボタン非活性フラグ
+        $after_button_disabled = true;
+        // 現在日時
+        $current_datetime = Carbon::now('Asia/Tokyo');
+
+        // リクエストチェック
+        if ($request->before_years) {
+            $current_datetime = new Carbon($request->before_years.' 00:00:00');
+        } elseif ($request->after_years && $request->after_years <= $current_datetime->format('Y-m')) {
+            $current_datetime = new Carbon($request->after_years.' 00:00:00');
+        }
+
+        // 現在年月
+        $current_years = $current_datetime->format('Y-m');
+        // 現在から一月前の年月
+        $before_years = Carbon::parse($current_years)->subMonthNoOverflow()->format('Y-m');
+        // 現在から一月後の年月
+        $after_years = Carbon::parse($current_years)->addMonthNoOverflow()->format('Y-m');
+
+        // 現在年月が今月未満の場合、翌月ボタンを活性化する
+        if ($current_years < (Carbon::now('Asia/Tokyo')->format('Y-m'))) {
+            $after_button_disabled = false;
+        }
+
+        // 勤怠情報
+        $attendances = Attendance::with('user', 'rests')->UserYearsSearch($user->id, $current_years)->Paginate(5);
+
+        // ユーザー勤怠表ページ表示
+        return view('user.attendance', compact('user', 'attendances', 'current_years', 'before_years', 'after_years', 'after_button_disabled'));
     }
 }

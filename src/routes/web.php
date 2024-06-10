@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\RestController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'date']);
     Route::get('/before', [AttendanceController::class, 'before_date']);
     Route::get('/after', [AttendanceController::class, 'after_date']);
+    Route::get('/user_list', [UserController::class, 'user_list']);
+    Route::get('/search', [UserController::class, 'search']);
+    Route::post('/user_attendance', [AttendanceController::class, 'user_attendance']);
 });

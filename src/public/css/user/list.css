@@ -1,0 +1,148 @@
+.list__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+.section__title {
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 90%;
+    text-align: center;
+}
+
+.search-form__item {
+    display: flex;
+    width: 100%;
+}
+
+.search-form__item input {
+    overflow: auto;
+}
+
+.search-form__item-keyword {
+    margin-right: 15px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #E3DED9;
+    border-radius: 3px;
+    color: #BEB1A6;
+    background-color: #FBFBFB;
+}
+
+.search-form__button {
+    width: 20%;
+    white-space: nowrap;
+}
+
+.search-form__button-submit {
+    margin-right: 15px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background: #8B7969;
+    color: #fff;
+    cursor: pointer;
+}
+
+.admin-table {
+    margin: 30px auto;
+    width: 90%;
+    text-align: left;
+}
+
+.admin-table__inner {
+    width: 100%;
+}
+
+.admin-table__row {
+    border: 1px solid #ddd;
+}
+
+.admin-table__header:first-of-type {
+    padding-left: 30px;
+}
+
+.admin-table__header {
+    padding: 10px 0;
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+    background-color: #8B7969;
+}
+
+.admin-table__header-span {
+    margin-right: 10%;
+}
+
+.admin-table__item:first-of-type {
+    padding-left: 30px;
+}
+
+.admin-table__item {
+    white-space: nowrap;
+}
+
+.admin-form__itme-p {
+    text-align: left;
+    color: #8B7969;
+}
+
+.detail-form__button {
+    width: 60px;
+    margin: 0 auto;
+}
+
+.detail-form__button-submit {
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 3px;
+    background: #F4F4F44D 30%;
+    color: #8B7969;
+    border-color: #D9C6B599;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.admin-table__pagination {
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    border-width: 0;
+}
+
+.pagination li {
+    border: 1px solid #E0DFDE;
+    padding: 5px 10px;
+}
+
+.pagination li:first-of-type {
+    border-radius: 3px 0 0 3px;
+}
+
+.pagination li:last-of-type {
+    border-radius: 0 3px 3px 0;
+}
+
+.disabled,
+.pagination li a {
+    color: #8B7969;
+    text-decoration: none;
+}
+
+.active {
+    color: #fff;
+    background-color: #8B7969;
+}

@@ -3,7 +3,7 @@
 @section('css')
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css')  }}" >
-<link rel="stylesheet" href="{{ asset('css/date.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user/attendance.css') }}">
 @endsection
 
 @section('content')
@@ -16,20 +16,24 @@
 @endif
 
 <div class="attendance__date">
-  <form class="attendance__button-before" action="{{ url('/before')}}" method="get">
+  <form class="attendance__button-before" action="{{ url('/user_attendance')}}" method="post">
     @csrf
     <button class="attendance__button-submit" type="submit"><</button>
-    <input type="hidden" name="req_date" value="{{ $current_date }}">
+    <input type="hidden" name="user_name" value="{{ $user['name'] }}">
+    <input type="hidden" name="user_email" value="{{ $user['email'] }}">
+    <input type="hidden" name="before_years" value="{{ $before_years }}">
   </form>
-  <span> {{ $current_date }} </span>
-  <form class="attendance__button-after" action="{{ url('/after')}}" method="get">
+  <span> {{ $current_years }} </span>
+  <form class="attendance__button-after" action="{{ url('/user_attendance')}}" method="post">
     @csrf
     @if ($after_button_disabled)
       <button class="attendance__button-disabled" disabled>></button>
     @else
       <button class="attendance__button-submit" type="submit">></button>
     @endif
-    <input type="hidden" name="req_date" value="{{ $current_date }}">
+    <input type="hidden" name="user_name" value="{{ $user['name'] }}">
+    <input type="hidden" name="user_email" value="{{ $user['email'] }}">
+    <input type="hidden" name="after_years" value="{{ $after_years }}">
   </form>
 </div>
 <div class="attendance__content">
@@ -37,6 +41,7 @@
     <table class="attendance-table__inner">
       <tr class="attendance-table__row">
         <th class="attendance-table__header">名前</th>
+        <th class="attendance-table__header">日付</th>
         <th class="attendance-table__header">勤務開始</th>
         <th class="attendance-table__header">勤務終了</th>
         <th class="attendance-table__header">休憩時間</th>
@@ -84,6 +89,7 @@
       @endphp
       <tr class="attendance-table__row">
         <td class="attendance-table__item">{{ $attendance->user['name'] }}</td>
+        <td class="attendance-table__item">{{ $attendance['date'] }}</td>
         <td class="attendance-table__item">{{ $attendance['start_work_time'] ?? '-' }}</td>
         <td class="attendance-table__item">{{ $attendance['end_work_time'] ?? '-' }}</td>
         <td class="attendance-table__item">{{ $totalRestTime }}</td>
@@ -91,9 +97,6 @@
       </tr>
       @endforeach
     </table>
-    <div class="attendance-table__pagination">
-      {{ $attendances->links('vendor.pagination.attendance') }}
-    </div>
   </div>
 </div>
 @endsection
