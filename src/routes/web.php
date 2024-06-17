@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\RestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailSendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/search', [UserController::class, 'search']);
     Route::post('/user_attendance', [AttendanceController::class, 'user_attendance']);
 });
+Route::get('/mail', [MailSendController::class, 'index']);
+
