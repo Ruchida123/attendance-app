@@ -48,7 +48,7 @@
     height: 40px;
     border: none;
     border-radius: 3px;
-    background: #8B7969;
+    background: #005FFF;
     color: #fff;
     cursor: pointer;
 }
@@ -64,7 +64,7 @@
 }
 
 .admin-table__row {
-    border: 1px solid #ddd;
+    border-top: 0.5px solid #333;
 }
 
 .admin-table__header:first-of-type {
@@ -75,8 +75,8 @@
     padding: 10px 0;
     text-align: left;
     font-weight: bold;
-    color: #fff;
-    background-color: #8B7969;
+    /* color: #fff;
+    background-color: #8B7969; */
 }
 
 .admin-table__header-span {
@@ -93,7 +93,6 @@
 
 .admin-form__itme-p {
     text-align: left;
-    color: #8B7969;
 }
 
 .detail-form__button {
@@ -105,9 +104,9 @@
     padding: 5px 10px;
     width: 100%;
     border-radius: 3px;
-    background: #F4F4F44D 30%;
-    color: #8B7969;
-    border-color: #D9C6B599;
+    background: #005FFF 30%;
+    color: #fff;
+    border: none;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -126,6 +125,7 @@
 .pagination li {
     border: 1px solid #E0DFDE;
     padding: 5px 10px;
+    background-color: #fff
 }
 
 .pagination li:first-of-type {
@@ -138,11 +138,11 @@
 
 .disabled,
 .pagination li a {
-    color: #8B7969;
+    color: #005FFF;
     text-decoration: none;
 }
 
 .active {
     color: #fff;
-    background-color: #8B7969;
+    background-color: #005FFF !important;
 }

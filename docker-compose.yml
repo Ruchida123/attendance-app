@@ -46,3 +46,5 @@ services:
     ports:
       - "8025:8025"
       - "1025:1025"
+    environment:
+      - MAIL_FROM_ADDRESS=sample@example.com
